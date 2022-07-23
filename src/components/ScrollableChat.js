@@ -1,5 +1,5 @@
 import { Avatar, Box, Tooltip, Typography } from "@mui/material";
-import ScrollableFeed from "react-scrollable-feed";
+// import ScrollableFeed from "react-scrollable-feed";
 import { ChatState } from "../ChatProvider";
 import {
   isLastMessage,
@@ -11,7 +11,7 @@ const ScrollableChat = ({ messages }) => {
   const { user } = ChatState();
 
   return (
-    <ScrollableFeed>
+    <div>
       {messages &&
         messages.map((m, i) => (
           <Box display="flex" key={m._id}>
@@ -44,7 +44,7 @@ const ScrollableChat = ({ messages }) => {
             </Typography>
           </Box>
         ))}
-    </ScrollableFeed>
+    </div>
   );
 };
 
