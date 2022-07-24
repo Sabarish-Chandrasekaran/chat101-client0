@@ -5,7 +5,6 @@ import {
   Button,
   Divider,
   Drawer,
-  ListItemButton,
   ListItemIcon,
   Menu,
   MenuItem,
@@ -29,8 +28,6 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import ChatLoading from "../ChatLoading";
 import UserListItem from "../userAvatar/UserListItem";
-// import NotificationBadge from "react-notification-badge";
-// import { Effect } from "react-notification-badge";
 import { getSender } from "../../config/ChatLogics";
 
 function SideDrawer() {
@@ -63,12 +60,12 @@ function SideDrawer() {
     navigate("/");
   };
 
+// search for users to chat with
   const handleSearch = async () => {
     if (!search) {
       toast.warn("Please Enter something in search", toastOptions);
       return;
     }
-
     try {
       setLoading(true);
 
@@ -77,19 +74,17 @@ function SideDrawer() {
           Authorization: `Bearer ${user.token}`,
         },
       };
-
       const { data } = await axios.get(
         `https://chat-1-on-1.herokuapp.com/user?search=${search}`,
         config
       );
-
       setLoading(false);
       setSearchResult(data);
     } catch (error) {
       toast.error("Error Occured!", toastOptions);
     }
   };
-
+// adding new contact for user
   const accessChat = async (userId) => {
     try {
       setLoadingChat(true);
@@ -323,13 +318,11 @@ function SideDrawer() {
           <List>
             {searchResult?.map((user) => (
               <ListItem key={user._id}>
-                <ListItemButton>
-                  <UserListItem
-                    key={user._id}
-                    user={user}
-                    handleFunction={() => accessChat(user._id)}
-                  />
-                </ListItemButton>
+                <UserListItem
+                  key={user._id}
+                  user={user}
+                  handleFunction={() => accessChat(user._id)}
+                />
               </ListItem>
             ))}
           </List>

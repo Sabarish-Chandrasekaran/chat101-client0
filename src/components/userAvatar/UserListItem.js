@@ -18,6 +18,7 @@ const UserListItem = ({ user, handleFunction }) => {
         },
       }}
       borderRadius={2}
+      mb={1}
     >
       <Avatar mr={4} cursor="pointer" alt={user.username} src={user.pic} />
       <Box>

@@ -147,7 +147,7 @@ const GroupChatModal = ({ children }) => {
             placeholder="Add Users eg: Test, John, Pallav"
             onChange={(e) => handleSearch(e.target.value)}
           />
-          <Box width="100%" d="flex" flexWrap="wrap">
+          <Box width="100%" d="flex" flexWrap="wrap" mb={2} mt={1}>
             {selectedUsers.map((u) => (
               <UserBadgeItem
                 key={u._id}

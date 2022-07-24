@@ -5,6 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { InputLabel } from "@mui/material";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -93,7 +94,7 @@ const Register = () => {
       const data = new FormData();
       data.append("file", pics);
       data.append("upload_preset", "chat-app");
-      data.append("cloud_name", "piyushproj");
+      data.append("cloud_name", "sabarishproj");
       fetch("https://api.cloudinary.com/v1_1/sabarish27k6/image/upload", {
         method: "post",
         body: data,
@@ -167,9 +168,10 @@ const Register = () => {
             margin="normal"
             required
             fullWidth
+            sx={{ marginBottom: "18px" }}
             id="confirmPassword"
             label="Confirm Password"
-            type={show ? "text" : "password"}
+            type={show2 ? "text" : "password"}
             name="confirmPassword"
             placeholder="Confirm Password"
             onChange={(e) => handleChange(e)}
@@ -185,12 +187,13 @@ const Register = () => {
               ),
             }}
           />
+          <InputLabel>Add Your Profile Picture</InputLabel>
           <TextField
-            sx={{ marginTop: "18px" }}
             type="file"
             accept="image/*"
             onChange={(e) => postDetails(e.target.files[0])}
           />
+
           <LoadingButton
             sx={{ marginTop: "18px" }}
             variant="contained"
