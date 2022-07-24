@@ -52,7 +52,7 @@ const GroupChatModal = ({ children }) => {
         },
       };
       const { data } = await axios.get(
-        `https://chat-1-on-1.herokuapp.com/user?search=${search}`,
+        ` https://chat-1-on-1.herokuapp.com/user?search=${search}`,
         config
       );
 
@@ -80,7 +80,7 @@ const GroupChatModal = ({ children }) => {
         },
       };
       const { data } = await axios.post(
-        `https://chat-1-on-1.herokuapp.com/chat/group`,
+        ` https://chat-1-on-1.herokuapp.com/chat/group`,
         {
           name: groupChatName,
           users: JSON.stringify(selectedUsers.map((u) => u._id)),

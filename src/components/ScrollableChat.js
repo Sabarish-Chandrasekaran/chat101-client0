@@ -1,5 +1,5 @@
+import { useRef, useEffect } from "react";
 import { Avatar, Box, Tooltip, Typography } from "@mui/material";
-// import ScrollableFeed from "react-scrollable-feed";
 import { ChatState } from "../ChatProvider";
 import {
   isLastMessage,
@@ -9,6 +9,12 @@ import {
 
 const ScrollableChat = ({ messages }) => {
   const { user } = ChatState();
+   const bottomRef = useRef(null);
+  
+ useEffect(() => {
+   // 👇️ scroll to bottom every time messages change
+   bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+ }, [messages]);
 
   return (
     <div>
@@ -17,7 +23,11 @@ const ScrollableChat = ({ messages }) => {
           <Box display="flex" key={m._id}>
             {(isSameSender(messages, m, i, user._id) ||
               isLastMessage(messages, i, user._id)) && (
-              <Tooltip title={m.sender.username} arrow placement="bottom-start">
+              <Tooltip
+                title={m.sender.username}
+                arrow
+                placement="bottom-start"
+              >
                 <Avatar
                   mr={1}
                   sx={{ cursor: "pointer", marginRight: 1 }}
@@ -26,6 +36,7 @@ const ScrollableChat = ({ messages }) => {
                 />
               </Tooltip>
             )}
+
             <Typography
               component="span"
               sx={{
@@ -41,6 +52,7 @@ const ScrollableChat = ({ messages }) => {
               }}
             >
               {m.content}
+              <div ref={bottomRef} />
             </Typography>
           </Box>
         ))}
